@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blender Python API コード生成ツール</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            color: #343a40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #212529;
+            margin-bottom: 10px;
+        }
+        p.description {
+            color: #495057;
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 700px;
+        }
+        textarea {
+            width: 100%;
+            max-width: 700px;
+            height: 180px;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            resize: vertical;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+        }
+        pre {
+            background: #f1f3f5;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            max-width: 700px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: "Courier New", monospace;
+            font-size: 1rem;
+        }
+        .notification {
+            margin-top: 15px;
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blender Python API コード生成</h1>
+    <p class="description">テキストボックスに指示を書いて「生成する」を押すと、ChatGPT の質問文が生成され、クリップボードにコピーされます。さらにプレビューで内容を確認できます。</p>
+    <textarea id="inputText" placeholder="Blender で生成したい内容や操作手順を日本語で記入してください..."></textarea>
+    <button onclick="generateCode()">生成する</button>
+    <div class="notification" id="notification"></div>
+    <h2>生成されたコードプレビュー</h2>
+    <pre id="outputCode"></pre>
+
+    <script>
+        function generateCode() {
+            const input = document.getElementById('inputText').value.trim();
+            const output = document.getElementById('outputCode');
+            const notification = document.getElementById('notification');
+
+            if (!input) {
+                notification.textContent = 'テキストを入力してください。';
+                notification.style.color = '#dc3545';
+                return;
+            }
+
+            // 高品質なBlender Python APIコードを生成
+            const code = `# Blender Python API 生成コード\n# 以下の要件を満たすよう可能な限りクオリティを上げて記述します\n\nimport bpy\n\n# 入力された指示:\n# ${input}\n\n# TODO: 以下に高品質な処理を実装してください\n# 例: オブジェクト作成、設定適用、アニメーション処理など\n`;
+
+            output.textContent = code;
+
+            // クリップボードにコピー
+            navigator.clipboard.writeText(code).then(() => {
+                notification.textContent = 'コードがクリップボードにコピーされました！';
+                notification.style.color = '#28a745';
+            }).catch(err => {
+                notification.textContent = 'クリップボードへのコピーに失敗しました。';
+                notification.style.color = '#dc3545';
+            });
+        }
+    </script>
+</body>
+</html>
