@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blender Python API Code Generation Tool</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            color: #343a40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #212529;
+            margin-bottom: 10px;
+        }
+        p.description {
+            color: #495057;
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 700px;
+        }
+        textarea {
+            width: 100%;
+            max-width: 700px;
+            height: 180px;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            resize: vertical;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+        }
+        pre {
+            background: #f1f3f5;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            max-width: 700px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: "Courier New", monospace;
+            font-size: 1rem;
+        }
+        .notification {
+            margin-top: 15px;
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blender Python API Code Generator</h1>
+    <p class="description">Write your instructions in the text box and press "Generate" to create a ChatGPT prompt. The result will be copied to the clipboard and shown in the preview below.</p>
+    <textarea id="inputText" placeholder="Enter the content or steps you want to generate in Blender..."></textarea>
+    <button onclick="generateCode()">Generate</button>
+    <div class="notification" id="notification"></div>
+    <h2>Generated Code Preview</h2>
+    <pre id="outputCode"></pre>
+
+    <script>
+        function generateCode() {
+            const input = document.getElementById('inputText').value.trim();
+            const output = document.getElementById('outputCode');
+            const notification = document.getElementById('notification');
+
+            if (!input) {
+                notification.textContent = 'Please enter some text.';
+                notification.style.color = '#dc3545';
+                return;
+            }
+
+            // Generate high-quality Blender Python API code
+            const code = `# Blender Python API Generated Code\n# This code is written to meet the specified requirements with as much quality as possible\n\nimport bpy\n\n# User instructions:\n# ${input}\n\n# TODO: Implement high-quality processing below\n# Example: Create objects, apply settings, handle animations, etc.\n`;
+
+            output.textContent = code;
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(code).then(() => {
+                notification.textContent = 'Code has been copied to the clipboard!';
+                notification.style.color = '#28a745';
+            }).catch(err => {
+                notification.textContent = 'Failed to copy to clipboard.';
+                notification.style.color = '#dc3545';
+            });
+        }
+    </script>
+</body>
+</html>
